@@ -52,7 +52,7 @@ const colorChange = {
         console.log("btnStart ist visible");
 
         btnStop.setAttribute("disabled", "disabled");
-        console.log("btnStop ist disabled");
+        // console.log("btnStop ist disabled");
     }
 
 }
