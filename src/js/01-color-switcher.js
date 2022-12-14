@@ -13,6 +13,7 @@ console.log(btnStop)
 btnStart.addEventListener('click', startColor);
 
 btnStop.addEventListener('click', stopColor);
+let intervalId;
 
 
 function startColor() {
