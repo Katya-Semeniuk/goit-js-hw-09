@@ -57,7 +57,8 @@ const options = {
 
           changesOfButton.btnIsNotActive();
           timeOutId = setInterval(() => {
-                  
+              
+            let diffBetwenOfDays;
             let currentTime = Date.now();
             diffBetwenOfDays = userDate - currentTime;
             console.log('Відлік почався');
