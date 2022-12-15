@@ -1,5 +1,12 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
+import Notiflix from 'notiflix';
+
+
+// const label = document.querySelectorAll('.label')
+
+// // const valueOfLabel = label.textContent.toUpperCase();
+// // label.textContent = valueOfLabel;
 
 const input = document.querySelector('#datetime-picker')
 
@@ -22,9 +29,10 @@ btnIsNotActive() {
 },
 }
 changesOfButton.btnIsNotActive(); 
+// --
 
 
-let timeOutId = null;
+  let timeOutId = null;
 // -----
 const options = {
   enableTime: true,
@@ -39,30 +47,33 @@ const options = {
     //   let deltaTime = userDate - dateNow;
       
       if (userDate <= dateNow) {
-        window.alert("Please choose a date in the future")
-    } else {
-          changesOfButton.btnIsActive();
-          btnStart.addEventListener('click', () => {
-              changesOfButton.btnIsNotActive();
-              timeOutId = setInterval(() => {
-                  
-                  let currentTime = Date.now();
-                  diffBetwenOfDays = userDate - currentTime;
-                  console.log('Відлік почався');
+        // window.alert("Please choose a date in the future")
+        Notiflix.Report.failure('',"Please choose a date in the future");
+      }
+      else {
+        changesOfButton.btnIsActive();
+        
+        btnStart.addEventListener('click', () => {
 
-                   let com = (convertMs(diffBetwenOfDays));
-      console.log(com)
-              }, 1000)
- updateContent()
-    //               let { days, hours, minutes, seconds } = (convertMs(diffBetwenOfDays));
-    //   console.log(`${days} days :: ${hours} hours:: ${minutes} min:: ${seconds}sec`)
+          changesOfButton.btnIsNotActive();
+          timeOutId = setInterval(() => {
+                  
+            let currentTime = Date.now();
+            diffBetwenOfDays = userDate - currentTime;
+            console.log('Відлік почався');
+
+            let { days, hours, minutes, seconds } = (convertMs(diffBetwenOfDays));
+            updateContent(days, hours, minutes, seconds)
+            console.log(`${days} days :: ${hours} hours:: ${minutes} min:: ${seconds}sec`);
+          }, 1000);
+          
           })
     }
   },
 };
 
-const fp = flatpickr('#datetime-picker', options);
-
+flatpickr('#datetime-picker', options);
+// const fp = flatpickr('#datetime-picker', options);
 
 function convertMs(ms) {
 //   Number of milliseconds per unit of time
@@ -80,34 +91,23 @@ function convertMs(ms) {
   // Remaining seconds
   const seconds = addLeadingZero(Math.floor((((ms % day) % hour) % minute) / second));
 
-    return {
-       days: days === 0 ? '00' : days < 10 ? addLeadingZero(days) : days,
-        hours,
-        minutes,
-        seconds
-    };
+  return {
+    days: days === 0 ? '00' : days < 10 ? addLeadingZero(days) : days,
+    hours,
+    minutes,
+    seconds
+  };
 }
-
 
 function addLeadingZero(value) {
 return String(value).padStart(2, '0')
 }
 
 
-function updateContent({ days, hours, minutes, seconds }) {
+function updateContent(days, hours, minutes, seconds) {
 
-  // refs.clockface.textContent = `${days}:${hours}:${minutes}:${seconds}:
   refs.days.textContent = days;
 refs.hours.textContent = hours;
 refs.minutes.textContent = minutes;
-refs.seconds.textContent = seconds; 
+  refs.seconds.textContent = seconds; 
 };
-
-
-class Timer {
-  constructor() {
-    this.timeOutId = null;
-  }
-}
-
-const timer = new Timer;
