@@ -24,8 +24,6 @@ function startColor() {
      btnStart.setAttribute("disabled", "disabled");
     console.log("btnStart ist disabled");
     
-
-    //  якщо вкл на Старт і кнопка Закрити не видима, то ремув 
     let res = btnStop.hasAttribute('disabled')
     console.log(res)
     if (res) {
