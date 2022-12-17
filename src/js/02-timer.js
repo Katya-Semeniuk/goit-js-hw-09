@@ -56,14 +56,18 @@ const options = {
         btnStart.addEventListener('click', () => {
 
           changesOfButton.btnIsNotActive();
+          
           timeOutId = setInterval(() => {
-              
             let diffBetwenOfDays;
             let currentTime = Date.now();
             diffBetwenOfDays = userDate - currentTime;
             console.log('Відлік почався');
 
-            let { days, hours, minutes, seconds } = (convertMs(diffBetwenOfDays));
+ if (diffBetwenOfDays < 1000) { 
+   clearInterval(timeOutId)
+            }
+
+  let { days, hours, minutes, seconds } = (convertMs(diffBetwenOfDays));
             updateContent(days, hours, minutes, seconds)
             console.log(`${days} days :: ${hours} hours:: ${minutes} min:: ${seconds}sec`);
           }, 1000);
@@ -112,3 +116,4 @@ refs.hours.textContent = hours;
 refs.minutes.textContent = minutes;
   refs.seconds.textContent = seconds; 
 };
+
