@@ -31,17 +31,19 @@ function initPromiseCreation(e) {
   const formData = new FormData(e.target);
   const { delay, step, amount } = Object.fromEntries(formData);
 
-  let currentAmount = 0;
+  let currentAmount = 1;
   let currentDelay = +delay;
-  
 
   setTimeout(() => {
+    createPromise(currentAmount, currentDelay); // first promise
+
+    // Other promises
     const interval = setInterval(() => {
       currentAmount++;
       createPromise(currentAmount, currentDelay);
-      currentDelay  += +step;
+      currentDelay += +step;
 
       if (currentAmount === +amount) clearInterval(interval);
-    }, +step );
+    }, +step);
   }, +delay);
 }
