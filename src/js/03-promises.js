@@ -36,12 +36,16 @@ function initPromiseCreation(e) {
 
   setTimeout(() => {
     createPromise(currentAmount, currentDelay); // first promise
+   
 
     // Other promises
     const interval = setInterval(() => {
       currentAmount++;
+       currentDelay += +step;
       createPromise(currentAmount, currentDelay);
-      currentDelay += +step;
+       console.log(currentDelay)
+      // currentDelay += +step;
+       
 
       if (currentAmount === +amount) clearInterval(interval);
     }, +step);
