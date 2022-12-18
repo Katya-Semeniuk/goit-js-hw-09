@@ -63,14 +63,15 @@ const options = {
             diffBetwenOfDays = userDate - currentTime;
             console.log('Відлік почався');
 
- if (diffBetwenOfDays < 1000) { 
+if (diffBetwenOfDays < 1000 ) { 
    clearInterval(timeOutId)
-            }
+          } 
 
   let { days, hours, minutes, seconds } = (convertMs(diffBetwenOfDays));
             updateContent(days, hours, minutes, seconds)
             console.log(`${days} days :: ${hours} hours:: ${minutes} min:: ${seconds}sec`);
           }, 1000);
+          
           
           })
     }

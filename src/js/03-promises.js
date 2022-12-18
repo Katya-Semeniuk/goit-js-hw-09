@@ -50,7 +50,6 @@ function initPromiseCreation(e) {
 
 
 
-
 // const form = document.querySelector('.form');
 // const formDelay = document.getElementsByName("delay");
 // const formStep = document.getElementsByName("step");
